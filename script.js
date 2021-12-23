@@ -12,7 +12,7 @@ document.onreadystatechange = function () {
             currentBug: null,
             lastBugId: 0,
             points: 0,
-            inicialTimeInSeconds: 10,
+            inicialTimeInSeconds: 60,
             periodGenerateInSecs: 7,
             endGame: false,
             bugs: [],
