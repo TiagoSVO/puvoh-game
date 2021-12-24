@@ -103,7 +103,9 @@ document.onreadystatechange = function () {
           },
 
           bitBug: function(bug) {
-            this.bugSound.play();
+            this.bugSound.then(resp => {
+              resp.play();
+            });
             this.removeBug(bug);
             this.options.points = this.options.points + 1;
             this.printPoint();
