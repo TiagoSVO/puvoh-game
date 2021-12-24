@@ -103,7 +103,7 @@ document.onreadystatechange = function () {
           },
 
           bitBug: function(bug) {
-            this.bugSound;
+            this.bugSound.play();
             this.removeBug(bug);
             this.options.points = this.options.points + 1;
             this.printPoint();
@@ -111,8 +111,9 @@ document.onreadystatechange = function () {
 
           bugSound: async function() {
             var audioBug = new Audio("puvoh.mp4");
-            console.log('puvoh audio!')
-            return audioBug.play();
+            audioBug.muted = true;
+            console.log('puvoh audio!');
+            return await audioBug;
           },
 
           removeBug: function(currentBug) {
