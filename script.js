@@ -110,7 +110,7 @@ document.onreadystatechange = function () {
 
           bugSound: function() {
             var audioBug = new Audio("puvoh.mp4");
-            audioBug.play;
+            audioBug.play();
           },
 
           removeBug: function(currentBug) {
