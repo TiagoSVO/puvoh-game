@@ -28,7 +28,7 @@ document.onreadystatechange = function () {
             console.log('Initializing...');
             this.options.gameField = this.getGameField();
             this.options.pointsScore = this.getPointsScore();
-            this.options.bugAudio = this.audioBug();
+            this.options.bugAudio = this.bugSound();
             this.printPoint();
             this.initEvents();
           },
