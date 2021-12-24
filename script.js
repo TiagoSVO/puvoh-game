@@ -28,6 +28,7 @@ document.onreadystatechange = function () {
             console.log('Initializing...');
             this.options.gameField = this.getGameField();
             this.options.pointsScore = this.getPointsScore();
+            this.options.bugAudio = this.audioBug();
             this.printPoint();
             this.initEvents();
           },
@@ -102,7 +103,7 @@ document.onreadystatechange = function () {
           },
 
           bitBug: function(bug) {
-            this.bugSound();
+            this.options.bugAudio.play();
             this.removeBug(bug);
             this.options.points = this.options.points + 1;
             this.printPoint();
@@ -110,7 +111,7 @@ document.onreadystatechange = function () {
 
           bugSound: function() {
             var audioBug = new Audio("puvoh.mp4");
-            audioBug.play();
+            return audioBug;
           },
 
           removeBug: function(currentBug) {
