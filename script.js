@@ -111,6 +111,7 @@ document.onreadystatechange = function () {
 
           bugSound: function() {
             var audioBug = new Audio("puvoh.mp4");
+            console.log('puvoh audio!')
             return audioBug;
           },
 
