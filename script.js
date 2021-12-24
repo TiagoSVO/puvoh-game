@@ -5,6 +5,7 @@ document.onreadystatechange = function () {
     if (document.readyState == "interactive") {
 
         var PuvohGame = {
+          audioBug: new Audio("puvoh.wav"),
 
           options: {
             gameField: null,
@@ -28,7 +29,6 @@ document.onreadystatechange = function () {
             console.log('Initializing...');
             this.options.gameField = this.getGameField();
             this.options.pointsScore = this.getPointsScore();
-            this.options.bugAudio = this.bugSound();
             this.printPoint();
             this.initEvents();
           },
@@ -84,7 +84,8 @@ document.onreadystatechange = function () {
             bugDiv.classList.add('p-bug');
             bugDiv.setAttribute('style', 'top:' + positionTop + 'px; left:' + positionLeft + 'px;');
             bugDiv.setAttribute('id', 'bugId-' + this.setBugId());
-            bugDiv.addEventListener('click', this.eventBitBug.bind(this), false)
+            bugDiv.addEventListener('click', this.eventBitBug.bind(this), false);
+            bugDiv.addEventListener('click', this.bugSound.bind(this), false);
             this.options.bugs.push(bugDiv);
             return bugDiv;
           },
@@ -103,23 +104,18 @@ document.onreadystatechange = function () {
           },
 
           bitBug: function(bug) {
-            this.bugSound.then(resp => {
-              resp.play();
-            });
             this.removeBug(bug);
             this.options.points = this.options.points + 1;
             this.printPoint();
           },
 
           bugSound: async function() {
-            var audioBug = new Audio("puvoh.mp4");
-            audioBug.muted = true;
-            console.log('puvoh audio!');
-            return await audioBug;
+            return await this.audioBug.play();
           },
 
           removeBug: function(currentBug) {
             currentBug.removeEventListener('click', this.eventBitBug.bind(this), false);
+            currentBug.removeEventListener('click', this.bugSound.bind(this), false);
             var itemId = this.options.bugs.indexOf(currentBug);
             this.options.bugs.splice(itemId, 1);
             this.options.gameField.removeChild(currentBug);
