@@ -6,8 +6,9 @@ document.onreadystatechange = function () {
 
         var PuvohGame = {
           audioBug: new Audio("puvoh.wav"),
+          buttonStart: document.querySelector('#p-start-button'),
 
-          options: {
+          initialConfigs: {
             gameField: null,
             pointsScore: null,
             currentBug: null,
@@ -20,6 +21,10 @@ document.onreadystatechange = function () {
             timeouts: []
           },
 
+          options: {
+
+          },
+
           getGameField: function() {
             var gameField = document.getElementById('p-game-field');
             return gameField
@@ -27,9 +32,6 @@ document.onreadystatechange = function () {
 
           init: function(options) {
             console.log('Initializing...');
-            this.options.gameField = this.getGameField();
-            this.options.pointsScore = this.getPointsScore();
-            this.printPoint();
             this.initEvents();
           },
 
@@ -43,14 +45,21 @@ document.onreadystatechange = function () {
           },
 
           initEvents: function() {
-            this.startGame();
+
+            this.buttonStart.addEventListener('click', this.startGame.bind(this), false);
+
           },
 
           startGame: function(e) {
             console.log('Start Game...');
+            this.buttonStart.hidden = true
+            this.options = {...this.initialConfigs};
+            this.options.gameField = this.getGameField();
+            this.options.pointsScore = this.getPointsScore();
             this.options.endGame = false;
             this.options.currentGame = setInterval(this.generateBugs.bind(this), 1000);
             this.startClockCountDown();
+            this.printPoint();
           },
 
           getRandomPositionInt: function (min, max) {
@@ -79,8 +88,8 @@ document.onreadystatechange = function () {
             var bugDiv = document.createElement("div");
             var maxAreaFieldGameWidth = this.options.gameField.offsetWidth
             var maxAreaFieldGameHeight = this.options.gameField.offsetHeight
-            var positionTop = this.getRandomPositionInt(10, (maxAreaFieldGameHeight - 35));
-            var positionLeft = this.getRandomPositionInt(10, (maxAreaFieldGameWidth - 35));
+            var positionTop = this.getRandomPositionInt(10, (maxAreaFieldGameHeight - 60));
+            var positionLeft = this.getRandomPositionInt(10, (maxAreaFieldGameWidth - 60));
             bugDiv.classList.add('p-bug');
             bugDiv.setAttribute('style', 'top:' + positionTop + 'px; left:' + positionLeft + 'px;');
             bugDiv.setAttribute('id', 'bugId-' + this.setBugId());
@@ -174,6 +183,7 @@ document.onreadystatechange = function () {
               clearTimeout(timeout)
             })
             _this.options.endGame = true;
+            this.buttonStart.hidden = false;
             clockTag.innerHTML = "End Game";
           }
 

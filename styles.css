@@ -1,12 +1,13 @@
 body {
   background-color: black;
+  margin: 0;
 }
 
 #p-wrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows:
-        150px
+        100px
         1fr
         50px;
     grid-template-areas:
@@ -14,10 +15,11 @@ body {
         "content"
         "footer";
     height: 100vh;
-    background-color: #F5F5F5;
+    background-color: #fff;
 }
 
 #p-game-field {
+  margin: 0 auto;
   width: 80%;
   height: 80%;
   border: 1px solid #777;
@@ -26,35 +28,72 @@ body {
   background: #ffffff;
   box-shadow: 0 0 10px #777;
   position: relative;
-  cursor: crosshair;
+  cursor: url(imgs/havaianas.png), crosshair;
+  color: #333;
+  overflow: hidden;
 }
 
 main#content {
   grid-area: content;
-  background: #ff00ff;
+  background: #333;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+main#content section {
+  flex: 1;
+  width: 100%;
+  text-align: center;
 }
 
 header#header {
   grid-area: header;
-  background: #ffff00;
+  background: #fff;
   display: flex;
+
+  text-align: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+header#header img.bug-icon {
+  height: 50%;
+  align-self: center;
+  margin: 0 10px;
+}
+
+header#header h1.bug-title {
+  align-self: center;
 }
 
 footer#footer {
   grid-area: footer;
-  background: #ff0000;
+  background: #fff;
   display: flex;
+
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .p-bug {
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: #000;
+  background: url('imgs/bug.svg');
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.btn {
+  padding: 10px;
+  border: 1px solid;
+  border-color: #777;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #ccc;
+  cursor: pointer;
 }

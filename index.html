@@ -7,18 +7,23 @@
   </head>
   <body id="p-wrapper">
     <header id='header'>
-      <h1>Título</h1>
+      <img src="imgs/bug.svg" class="bug-icon"/>
+      <h1 class="bug-title">Puvoh! Game</h1>
     </header>
     <main id="content">
-      <div id="p-game-field">Jogo aqui!
-        <br/>
-        <p>Score: <span id="score"></span></p>
-        <p>Time: <span id="countdownClock"></span></p>
-      </div>
-
+      <section class="game-message">
+        <h2>Kill the bugs and get max score that you can!<h2>
+          <p>Score: <span id="score"></span></p>
+          <p>Time: <span id="countdownClock"></span></p>
+        <button class="btn" id="p-start-button" class="p-start" type="button">Start Game</button>
+      </section>
+      <section class="game-field">
+        <div id="p-game-field">
+        </div>
+      </section>
     </main>
     <footer id='footer'>
-      <p>Rodapé aqui!</p>
+      <p>Developed by tiago.svo.dev</p>
     </footer>
     <script type="text/javascript" src="script.js"> </script>
   </body>
